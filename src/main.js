@@ -31,13 +31,13 @@ const onSearchFormSubmit = event => {
  fetchImages(query)
     .then(data => {
       if (data.hits.length === 0) {
-        searchFormEl.loader.style.display = "none";
         iziToast.error({
         message: "Sorry, there are no images matching your search query. Please try again!",
         position: "topRight",
         });
 
         galleryEl.innerHTML = "";
+        loader.classList.add("is-hidden");
         searchFormEl.reset();
         return;
       }
@@ -59,7 +59,8 @@ const onSearchFormSubmit = event => {
         message: "Something went wrong, please try again later.",
         position: "topRight",
       })
-     loader.classList.add("is-hidden");
+      loader.classList.add("is-hidden");
+      
     })
   searchFormEl.reset();
 }
